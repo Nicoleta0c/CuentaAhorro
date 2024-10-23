@@ -90,10 +90,15 @@
                             if (decimal.TryParse(Console.ReadLine(), out montoRetiro))
                             {
                                 string codigoValidacion = "";
-                                if (cuenta is SuperAhorro)
+                                try
                                 {
-                                    Console.Write("ingresa codigo para validar:");
+                                    SuperAhorro superAhorro = (SuperAhorro)cuenta;
+                                    Console.Write("ingresa codigo para validar: ");
                                     codigoValidacion = Console.ReadLine()!;
+                                }
+                                catch (InvalidCastException)
+                                {
+                                   
                                 }
                                 cuenta.RetirarNuevo(montoRetiro, codigoValidacion);
                             }
